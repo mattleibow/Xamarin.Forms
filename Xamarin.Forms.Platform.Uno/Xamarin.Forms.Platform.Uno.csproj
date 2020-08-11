@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
+    <GenerateLibraryLayout>true</GenerateLibraryLayout>
+    <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>Xamarin.Forms.Platform.UAP</AssemblyName>
+    <RootNamespace>Xamarin.Forms.Platform.UAP</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Uno.UI" Version="3.1.0-dev.4" />
+    <PackageReference Include="Uno.WinUI" Version="3.1.0-dev.4" />
+    <PackageReference Include="Uno.SourceGenerationTasks" Version="3.0.0-dev.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.Forms.Core\Xamarin.Forms.Core.csproj" />
+    <ProjectReference Include="..\Xamarin.Forms.Xaml\Xamarin.Forms.Xaml.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="..\Xamarin.Forms.Platform.UAP\**\*.xaml" Exclude="..\Xamarin.Forms.Platform.UAP\bin\**\*;..\Xamarin.Forms.Platform.UAP\obj\**\*" />
+    <Compile Include="..\Xamarin.Forms.Platform.UAP\**\*.cs" Exclude="..\Xamarin.Forms.Platform.UAP\bin\**\*;..\Xamarin.Forms.Platform.UAP\obj\**\*" />
+    <Compile Update="..\Xamarin.Forms.Platform.UAP\**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Xamarin.Forms.Core\Crc64.cs" Link="Crc64.cs" />
+    <Compile Include="..\Xamarin.Forms.Core\StreamWrapper.cs" Link="StreamWrapper.cs" />
+  </ItemGroup>
+
+</Project>
